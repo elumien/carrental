@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rent-A-Car</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="../static/css/table.css" th:href="@{/css/table.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
+</head>
+<body>
+<div class="container">
+    <form action="#" th:action="@{/rent}" th:object="${rent}" method="post">
+        <input type="hidden" name="carRegistrationPlate" th:value="${carRegistrationPlate}" />
+        <table id="rent_a_car_table" class="table table-sm table-striped" style="width: 500px">
+            <tr>
+                <td style="text-align: center"><span style="font-size: 24px;font-weight: bold">Rent A Car</span></td>
+                <td style="float: right"><button style="width: 69px" type="button" class="btn btn-info" th:onclick="'window.location.href=\'/car/' + ${carRegistrationPlate} + '\''">Back</button></td>
+            </tr>
+            <ttr>
+                <td style="float: right">E-mail:</td>
+                <td><input class="form-control" type="text" th:field="*{email}" /></td>
+            </ttr>
+            <tr>
+                <td style="float: right">From</td>
+                <td>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input class="form-control" th:field="*{dateFrom}" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="float: right">To</td>
+                <td>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker2'>
+                            <input class="form-control" th:field="*{dateTo}" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center"><label class="radio-inline" style="display: inline;"><input class="rent_radio_btn" data="domestic" type="radio" name="optradio" checked>Domestic usage</label>
+                    <label class="radio-inline"><input class="rent_radio_btn" data="foreign" type="radio" name="optradio">Foreign usage</label>
+                </td>
+            </tr>
+            <tr id="rent_a_car_foreign_select" class="hidden">
+                <td style="text-align: center" colspan="2">
+                    <select id="country_multiselect" multiple="multiple">
+                        <option value="england">England</option>
+                        <option value="germany">Germany</option>
+                        <option value="france">France</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="romania">Romania</option>
+                        <option value="croatia">Croatia</option>
+                    </select>
+                </td>
+                <td class="hidden">
+                    <input id="country_input" class="form-control"/>
+                </td>
+            </tr>
+            <tr style="text-align: center">
+                <td colspan="2"><input style="margin-right: 10px;" class="btn btn-info" type="submit" value="Submit" /> <input style="margin-right: 10px;" class="btn btn-info" type="reset" value="Reset" /> <button style="width: 69px" type="button" class="btn btn-info" th:onclick="'window.location.href=\'/\''">Car list</button></td>
+            </tr>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<script type="text/javascript">
+
+
+    $('#datetimepicker1').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
+    $('#datetimepicker2').datetimepicker({
+        format: 'YYYY-MM-DD',
+        useCurrent: false
+    });
+
+    $("#datetimepicker1").on("dp.change", function (e) {
+        $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+    });
+    $("#datetimepicker2").on("dp.change", function (e) {
+        $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+    });
+
+    $(".rent_radio_btn").change(function () {
+        if($(this).attr("data")=='foreign'){
+            $("#rent_a_car_foreign_select").removeClass("hidden");
+        } else {
+            $("#rent_a_car_foreign_select").addClass("hidden");
+        }
+    })
+
+    $('#country_multiselect').multiselect({
+        onChange: function(element, checked) {
+            var countries = $('#country_multiselect option:selected');
+            var selected = [];
+            $(countries).each(function(index, countries){
+                selected.push([$(this).val()]);
+            });
+
+            $("#country_input").val(selected.join());
+        }
+    });
+
+</script>
+</body>
+</html>

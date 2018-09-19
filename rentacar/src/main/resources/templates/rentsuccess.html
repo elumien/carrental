@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rent-A-Car</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/table.css" th:href="@{/css/table.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-success" style="padding-top: 20px;">
+        <div class="panel-heading" style="font-weight: bold; font-size: 20px;">Successful renting!</div>
+        <div class="panel-body">Your car rental was successful! Thank you for your order.</div>
+    </div>
+    <button style="width: 69px" type="button" class="btn btn-primary" th:onclick="'window.location.href=\'/\''">Car list</button>
+</div>
+</body>
+</html>
+
+
+

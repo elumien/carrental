@@ -1,0 +1,18 @@
+#car_table tr {
+    cursor: pointer;
+}
+
+a {
+    color: black;
+    text-decoration: none!important; /* no underline */
+}
+
+#rent_a_car_table input {
+    cursor: pointer;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+

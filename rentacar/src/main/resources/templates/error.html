@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rent-A-Car</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/table.css" th:href="@{/css/table.css}" />
+</head>
+<body>
+
+<div class="container">
+    <div>
+        <a href="/">Car List</a>
+    </div>
+    <article>
+        <header>
+            <h1 th:text="${error}"></h1>
+        </header>
+
+        <section >
+            <p th:text="${message}"></p>
+            <p th:text="${path}"></p>
+            <p th:text="${status}"></p>
+            <p th:text="${timestamp}"></p>
+        </section>
+    </article>
+
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" ></script>
+</body>
+</html>
